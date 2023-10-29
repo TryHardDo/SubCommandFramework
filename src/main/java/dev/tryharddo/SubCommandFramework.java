@@ -12,13 +12,13 @@ import java.util.HashSet;
 import java.util.List;
 
 public final class SubCommandFramework {
-    private final HashSet<ISubCommand> subCommandRegistry;
+    private final SubCommandRegistry registry;
     private final BaseCommandHandler baseHandler;
     private final JavaPlugin pluginInstance;
 
     public SubCommandFramework(JavaPlugin instance, String baseCommand, String description, String usageMessage, List<String> aliases) {
-        this.subCommandRegistry = new HashSet<>();
-        this.baseHandler = new BaseCommandHandler(baseCommand, description, usageMessage, aliases);
+        this.registry = new SubCommandRegistry();
+        this.baseHandler = new BaseCommandHandler(this.registry, baseCommand, description, usageMessage, aliases);
         this.pluginInstance = instance;
     }
 
@@ -36,30 +36,11 @@ public final class SubCommandFramework {
         }
     }
 
-    public boolean registerSubCommand(ISubCommand subCommand) {
-        return this.subCommandRegistry.add(subCommand);
-    }
-
-    public boolean unregisterSubCommand(ISubCommand subCommand) {
-        return this.subCommandRegistry.remove(subCommand);
-    }
-
-    public void unregisterAll() {
-        this.subCommandRegistry.clear();
-    }
-
-    public Collection<ISubCommand> registerAll(ISubCommand @NotNull ... subCommands) {
-        HashSet<ISubCommand> added = new HashSet<>();
-        for (ISubCommand sc : subCommands) {
-            if (registerSubCommand(sc)) {
-                added.add(sc);
-            }
-        }
-
-        return added;
-    }
-
     public BaseCommandHandler getBaseHandler() {
         return baseHandler;
+    }
+
+    public SubCommandRegistry getRegistry() {
+        return registry;
     }
 }
