@@ -12,6 +12,7 @@ public class SubCommandRegistry {
     public SubCommandRegistry() {
         this.subCommandRegistry = new HashSet<>();
     }
+
     public boolean registerSubCommand(ISubCommand subCommand) {
         return this.subCommandRegistry.add(subCommand);
     }

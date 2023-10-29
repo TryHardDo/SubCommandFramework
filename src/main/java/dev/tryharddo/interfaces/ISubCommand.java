@@ -4,7 +4,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.permissions.Permission;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface ISubCommand {

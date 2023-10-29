@@ -1,14 +1,10 @@
 package dev.tryharddo;
 
-import dev.tryharddo.interfaces.ISubCommand;
 import org.bukkit.Server;
 import org.bukkit.command.CommandMap;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Field;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
 public final class SubCommandFramework {
